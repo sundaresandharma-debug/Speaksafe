@@ -11,6 +11,9 @@ Built with **Java 17, Spring Boot, Apache OpenNLP, SQLite and a Chrome extension
 
 ![Extension blurring toxic comments](docs/screenshots/forum.png)
 
+🎬 **Demo video (1 min 19 s):** [`docs/demo/SpeakSafe_Demo.mp4`](docs/demo/SpeakSafe_Demo.mp4)
+· step-by-step screenshots in [`docs/demo/steps`](docs/demo/steps)
+
 ---
 
 ## How it works
@@ -65,7 +68,7 @@ mvnw.cmd spring-boot:run        (Windows)
 ```
 
 The first run downloads the libraries, which takes a few minutes. When you see
-`SpeakSafe: trained Linear SVM on 780 messages` and `Started SpeakSafeApplication`, it is ready.
+`SpeakSafe: trained Linear SVM on 1160 messages` and `Started SpeakSafeApplication`, it is ready.
 
 Open <http://localhost:8080> to try the message checker and
 <http://localhost:8080/dashboard.html> for the moderator dashboard.
@@ -80,7 +83,27 @@ Open <http://localhost:8080> to try the message checker and
 Now open any page with comments, or type something rude into any text box, and SpeakSafe reacts.
 The backend must be running for the extension to work.
 
-### 4. Get the evaluation results (accuracy, precision, recall, F1)
+### 4. Run the demo yourself
+
+The `demo` folder has a fake group-chat page ("CampusChat") with some toxic and some harmless messages.
+Chrome extensions can't run on files opened directly from your disk unless you allow it, so serve the page
+with any small web server. With Python installed:
+
+```
+cd demo
+python -m http.server 8000
+```
+
+Then open <http://localhost:8000/chat.html> (backend running, extension installed) and try:
+
+1. Watch the toxic messages get blurred. Click **Show**, **Hide** and **Report**.
+2. Type `you are a worthless idiot` in the message box. A red warning appears.
+3. Replace it with `sorry, I was upset. Can we talk after class?`. The warning goes away.
+4. Press F12 → Console and run `incoming('anon', 'shut up you dumb idiot')`.
+   The new message is blurred within a second.
+5. Open the 🛡️ popup, then **Open moderator dashboard**.
+
+### 5. Get the evaluation results (accuracy, precision, recall, F1)
 
 ```
 cd backend
@@ -91,7 +114,7 @@ java -jar target/speaksafe.jar --evaluate
 This compares **Naive Bayes vs Linear SVM** on an 80/20 train/test split. Sample output is saved in
 [`docs/evaluation_output.txt`](docs/evaluation_output.txt). The dashboard also has a **Run evaluation** button.
 
-### 5. Run the tests
+### 6. Run the tests
 
 ```
 cd backend
@@ -133,15 +156,15 @@ Example response from `/api/analyze`:
 | Setting | Default | Meaning |
 |---|---|---|
 | `speaksafe.model` | `svm` | `svm` or `naive-bayes` |
-| `speaksafe.warn-threshold` | `40` | Score at which a message gets a warning |
+| `speaksafe.warn-threshold` | `50` | Score at which a message gets a warning |
 | `speaksafe.blur-threshold` | `70` | Score at which a message is blurred and flagged |
 
 ---
 
 ## About the dataset
 
-`backend/src/main/resources/dataset/speaksafe_dataset.csv` has **780 labelled messages**
-(340 safe, 160 insult, 140 threat, 140 hate speech). The format is simple:
+`backend/src/main/resources/dataset/speaksafe_dataset.csv` has **1160 labelled messages**
+(720 safe, 160 insult, 140 threat, 140 hate speech). The format is simple:
 
 ```
 label,text
@@ -149,9 +172,14 @@ insult,you are such a loser
 safe,thanks for the notes
 ```
 
-Most of it is generated from sentence patterns, so the accuracy it gives (about 97–99%) is **higher than
-you would get on real social media data**. To get more realistic numbers for your final report, add rows from
-a public dataset in the same `label,text` format and re-run `--evaluate`. Good options:
+Most of it is generated from sentence patterns, so the 80/20 test-split accuracy (about 97–99%) is
+**higher than you would get on real social media data**. A fairer check is
+[`docs/demo/unseen_sentence_test.txt`](docs/demo/unseen_sentence_test.txt): 59 hand-written sentences the
+model never saw. **38 of 39 harmless sentences pass and 19 of 20 toxic ones are caught.** The mistakes are
+listed there too. They make good material for the "limitations" part of your report.
+
+To get more realistic numbers for your final report, add rows from a public dataset in the same
+`label,text` format and re-run `--evaluate`. Good options:
 
 * **Jigsaw Toxic Comment Classification** (Kaggle): map `insult` → insult, `threat` → threat,
   `identity_hate` → hate_speech, rows with no labels → safe

@@ -70,13 +70,19 @@ public class SvmClassifier implements Classifier {
 
     @Override
     public Map<Category, Double> predictProbabilities(Map<Integer, Double> vector) {
-        // An SVM gives distances, not probabilities. We squash each distance with a
-        // sigmoid and then rescale so all categories add up to 1.
+        // An SVM gives distances, not probabilities. We squash each distance into 0..1 with a sigmoid.
         double[] p = new double[categories.length];
         double sum = 0;
         for (int c = 0; c < categories.length; c++) {
             p[c] = 1.0 / (1.0 + Math.exp(-3.0 * score(c, vector)));
             sum += p[c];
+        }
+        // If no category is confident (total below 1), the message is unlike anything toxic
+        // the model has seen, so the left-over probability goes to SAFE.
+        int safe = Category.SAFE.ordinal();
+        if (sum < 1.0) {
+            p[safe] += 1.0 - sum;
+            sum = 1.0;
         }
         Map<Category, Double> probabilities = new EnumMap<>(Category.class);
         for (int c = 0; c < categories.length; c++) {

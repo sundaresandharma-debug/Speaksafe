@@ -57,10 +57,13 @@
     bubble.textContent = (result.action === 'BLUR' ? '⛔ ' : '⚠️ ')
       + 'SpeakSafe: this message looks like ' + LABELS[result.category].toLowerCase()
       + ' (toxicity ' + result.score + '/100). Please think before you send it.';
+    document.body.appendChild(bubble);
     const box = target.getBoundingClientRect();
     bubble.style.left = (window.scrollX + box.left) + 'px';
-    bubble.style.top = (window.scrollY + box.bottom + 6) + 'px';
-    document.body.appendChild(bubble);
+    // Show the bubble below the text box, or above it if there is no room below (e.g. chat apps).
+    const fitsBelow = box.bottom + 6 + bubble.offsetHeight <= window.innerHeight;
+    const top = fitsBelow ? box.bottom + 6 : box.top - 6 - bubble.offsetHeight;
+    bubble.style.top = (window.scrollY + top) + 'px';
   }
 
   document.addEventListener('input', event => {

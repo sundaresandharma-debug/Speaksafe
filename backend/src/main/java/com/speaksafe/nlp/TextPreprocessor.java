@@ -35,6 +35,7 @@ public class TextPreprocessor {
         String clean = text.toLowerCase();
         clean = clean.replaceAll("https?://\\S+|www\\.\\S+", " ");   // remove links
         clean = clean.replaceAll("@\\w+", " ");                     // remove @mentions
+        clean = expandContractions(clean);                          // you're -> you are
         clean = normalizeLeetspeak(clean);                          // 1d10t -> idiot
         clean = clean.replaceAll("(.)\\1{2,}", "$1");               // stuuupid -> stupid
         clean = clean.replaceAll("[^a-z\\s]", " ");                 // remove symbols and digits
@@ -46,6 +47,20 @@ public class TextPreprocessor {
             }
         }
         return tokens;
+    }
+
+    /** Writes short forms out in full, so "I'll" and "you're" become real words instead of "ll" and "re". */
+    private String expandContractions(String text) {
+        return text.replace('\u2019', '\'')                       // curly apostrophe -> straight
+                   .replaceAll("\\bcan't\\b", "can not")
+                   .replaceAll("\\bwon't\\b", "will not")
+                   .replaceAll("n't\\b", " not")
+                   .replaceAll("'re\\b", " are")
+                   .replaceAll("'ll\\b", " will")
+                   .replaceAll("'m\\b", " am")
+                   .replaceAll("'ve\\b", " have")
+                   .replaceAll("'d\\b", " would")
+                   .replaceAll("'s\\b", "");
     }
 
     /** Replaces digits and symbols used to hide bad words, but only inside words that contain letters. */

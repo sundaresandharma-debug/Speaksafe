@@ -75,7 +75,7 @@ TREE = """SpeakSafe
     └── icons"""
 
 SCREENSHOTS = [
-    ("forum.png", "Browser extension blurring toxic comments and warning while typing"),
+    ("forum.png", "Browser extension blurring toxic messages in a group chat and warning while typing"),
     ("popup.png", "Extension popup with settings, counters and quick test"),
     ("checker.png", "Web message checker showing toxicity score and category"),
     ("dashboard.png", "Moderator dashboard with flagged messages and model evaluation"),

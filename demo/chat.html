@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>CampusChat – CSE 2nd Year</title>
+<style>
+body{margin:0;font-family:Segoe UI,system-ui,sans-serif;background:#eef1f6}
+.top{background:#0f766e;color:#fff;padding:14px 22px;font-weight:700;font-size:18px}
+.top span{font-weight:400;font-size:13px;opacity:.85;margin-left:10px}
+#feed{max-width:760px;margin:16px auto;padding:0 12px 120px}
+.msg{background:#fff;border-radius:10px;padding:10px 14px;margin:10px 0;box-shadow:0 1px 2px rgba(0,0,0,.08);max-width:80%}
+.msg.me{margin-left:auto;background:#dcfce7}
+.name{font-size:12px;font-weight:700;color:#0f766e}
+.msg p{margin:4px 0 0;font-size:15px}
+.composer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:12px;display:flex;justify-content:center;gap:8px}
+.composer textarea{width:600px;height:44px;padding:10px;font:15px Segoe UI,sans-serif;border:1px solid #ccc;border-radius:8px;resize:none}
+.composer button{background:#0f766e;color:#fff;border:0;border-radius:8px;padding:0 22px;font-weight:700;font-size:15px}
+</style></head><body>
+<div class="top">💬 CampusChat <span>#cse-2nd-year · 128 members</span></div>
+<div id="feed">
+ <div class="msg"><div class="name">Riya</div><p>Does anyone have the notes for tomorrow's physics exam?</p></div>
+ <div class="msg"><div class="name">Karthik</div><p>I'll upload them to the drive tonight 👍</p></div>
+ <div class="msg"><div class="name">Arjun</div><p>you are such a pathetic loser, nobody wants you here</p></div>
+ <div class="msg"><div class="name">Meena</div><p>Great job on the science fair everyone!</p></div>
+ <div class="msg"><div class="name">unknown_user42</div><p>I know where you live, watch your back after school</p></div>
+ <div class="msg"><div class="name">Kavin</div><p>this homework is killing me lol</p></div>
+ <div class="msg"><div class="name">troll_acc</div><p>immigrants are parasites and should be kicked out</p></div>
+ <div class="msg"><div class="name">Divya</div><p>My muslim friends invited us for the Eid dinner, it was lovely</p></div>
+</div>
+<div class="composer"><textarea id="box" placeholder="Type a message…"></textarea><button id="send">Send</button></div>
+<script>
+function add(name, text, me){const d=document.createElement('div');d.className='msg'+(me?' me':'');
+ const n=document.createElement('div');n.className='name';n.textContent=name;const p=document.createElement('p');p.textContent=text;
+ d.append(n,p);document.getElementById('feed').appendChild(d);window.scrollTo(0,document.body.scrollHeight);}
+document.getElementById('send').onclick=()=>{const b=document.getElementById('box');if(!b.value.trim())return;add('You',b.value.trim(),true);b.value='';};
+window.incoming=add;
+</script></body></html>

@@ -30,7 +30,7 @@ public class ToxicityDetector {
     private final int blurThreshold;
 
     public ToxicityDetector(@Value("${speaksafe.model:svm}") String modelName,
-                            @Value("${speaksafe.warn-threshold:40}") int warnThreshold,
+                            @Value("${speaksafe.warn-threshold:50}") int warnThreshold,
                             @Value("${speaksafe.blur-threshold:70}") int blurThreshold) {
         this.warnThreshold = warnThreshold;
         this.blurThreshold = blurThreshold;
@@ -47,12 +47,17 @@ public class ToxicityDetector {
         // Toxicity score = how sure the model is that the message is NOT safe.
         int score = (int) Math.round((1.0 - probabilities.get(Category.SAFE)) * 100);
 
+        // Below the warning threshold the message is SAFE.
+        // Otherwise it gets the most likely toxic category (insult, threat or hate speech).
         Category category = Category.SAFE;
-        for (Map.Entry<Category, Double> e : probabilities.entrySet()) {
-            if (e.getValue() > probabilities.get(category)) category = e.getKey();
-        }
-        if (score < warnThreshold) {
-            category = Category.SAFE;
+        if (score >= warnThreshold) {
+            double best = -1;
+            for (Map.Entry<Category, Double> e : probabilities.entrySet()) {
+                if (e.getKey() != Category.SAFE && e.getValue() > best) {
+                    best = e.getValue();
+                    category = e.getKey();
+                }
+            }
         }
 
         return new AnalysisResult(text, score, category, decideAction(category, score),

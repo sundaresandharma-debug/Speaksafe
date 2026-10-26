@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ToxicityDetectorTest {
 
-    private final ToxicityDetector detector = new ToxicityDetector("svm", 40, 70);
+    private final ToxicityDetector detector = new ToxicityDetector("svm", 50, 70);
 
     @Test
     void detectsEachCategory() {
@@ -28,7 +28,17 @@ class ToxicityDetectorTest {
         AnalysisResult result = detector.analyze("thanks for helping me with the homework");
         assertEquals(Category.SAFE, result.category());
         assertEquals(Action.NONE, result.action());
-        assertTrue(result.score() < 40);
+        assertTrue(result.score() < 50);
+    }
+
+    @Test
+    void everydayMessagesAreNotFlagged() {
+        String[] messages = {"You", "I'll upload them to the drive tonight", "I'll call you tomorrow",
+                "you're welcome!", "she's coming back from Delhi on monday", "you look nice in that photo",
+                "the Christian club is organising a charity run", "this homework is killing me lol"};
+        for (String message : messages) {
+            assertEquals(Action.NONE, detector.analyze(message).action(), message);
+        }
     }
 
     @Test

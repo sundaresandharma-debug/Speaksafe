@@ -1,35 +1,35 @@
 
 ================ SpeakSafe Model Evaluation ================
-Dataset size: 780 messages (80% train / 20% test)
+Dataset size: 1160 messages (80% train / 20% test)
 
 Model           Accuracy  Precision   Recall  F1-score   ms/message
-Naive Bayes        97.4%      96.8%    98.0%     97.3%        0.082
-Linear SVM         99.4%      99.1%    99.6%     99.4%        0.074
+Naive Bayes        97.4%      96.8%    96.2%     96.5%        0.086
+Linear SVM         99.1%      98.9%    98.3%     98.6%        0.031
 
 --- Naive Bayes: per category ---
 Category      Precision   Recall  F1-score  Support
-SAFE             100.0%    95.6%     97.7%       68
-INSULT            97.0%   100.0%     98.5%       32
-THREAT            90.3%   100.0%     94.9%       28
-HATE_SPEECH      100.0%    96.4%     98.2%       28
+SAFE              97.9%    98.6%     98.3%      144
+INSULT           100.0%    96.9%     98.4%       32
+THREAT            92.6%    89.3%     90.9%       28
+HATE_SPEECH       96.6%   100.0%     98.2%       28
 Confusion matrix (rows = actual, columns = predicted):
                     SAFE      INSULT      THREAT HATE_SPEECH
-SAFE                  65           0           3           0
-INSULT                 0          32           0           0
-THREAT                 0           0          28           0
-HATE_SPEECH            0           1           0          27
+SAFE                 142           0           1           1
+INSULT                 0          31           1           0
+THREAT                 3           0          25           0
+HATE_SPEECH            0           0           0          28
 
 --- Linear SVM: per category ---
 Category      Precision   Recall  F1-score  Support
-SAFE             100.0%    98.5%     99.3%       68
-INSULT           100.0%   100.0%    100.0%       32
-THREAT            96.6%   100.0%     98.2%       28
+SAFE              99.3%   100.0%     99.7%      144
+INSULT           100.0%    96.9%     98.4%       32
+THREAT            96.4%    96.4%     96.4%       28
 HATE_SPEECH      100.0%   100.0%    100.0%       28
 Confusion matrix (rows = actual, columns = predicted):
                     SAFE      INSULT      THREAT HATE_SPEECH
-SAFE                  67           0           1           0
-INSULT                 0          32           0           0
-THREAT                 0           0          28           0
+SAFE                 144           0           0           0
+INSULT                 0          31           1           0
+THREAT                 1           0          27           0
 HATE_SPEECH            0           0           0          28
 ============================================================
 
