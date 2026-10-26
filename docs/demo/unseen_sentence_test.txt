@@ -1,64 +1,80 @@
-SpeakSafe - test on sentences the model never saw during training
+SpeakSafe - test on sentences the model never saw during training (default model: Linear SVM)
 Columns: WRONG marker, toxicity score (0-100), category, action, message
 Action NONE = shown normally, WARN = warning, BLUR = hidden and flagged
+The last 11 sentences are the ones used in the demo video.
 
-       11  SAFE         NONE  | sorry, I was upset. Can we talk after class?
-       22  SAFE         NONE  | I'll upload them to the drive tonight 👍
-        8  SAFE         NONE  | You
+       10  SAFE         NONE  | sorry, I was upset. Can we talk after class?
+       19  SAFE         NONE  | I'll upload them to the drive tonight 👍
+        7  SAFE         NONE  | You
         0  SAFE         NONE  | Karthik
-        5  SAFE         NONE  | I'll call you tomorrow
-        5  SAFE         NONE  | I'll see you after school
-        3  SAFE         NONE  | we'll meet at the library tonight
+        4  SAFE         NONE  | I'll call you tomorrow
+        4  SAFE         NONE  | I'll see you after school
+        2  SAFE         NONE  | we'll meet at the library tonight
         4  SAFE         NONE  | can you send the assignment tonight?
-       13  SAFE         NONE  | I'm going to the gym after school
-        6  SAFE         NONE  | you're welcome!
-        5  SAFE         NONE  | you did really well in the exam
-        8  SAFE         NONE  | let's play cricket this weekend
-        8  SAFE         NONE  | I'll bring the projector to class tomorrow
-       11  SAFE         NONE  | don't forget to submit the lab record
-        6  SAFE         NONE  | the hostel food is terrible today
-       10  SAFE         NONE  | who won the match yesterday?
-       18  SAFE         NONE  | I can't wait for the holidays
-       11  SAFE         NONE  | my sister is learning to drive
-        7  SAFE         NONE  | our team lost the match but we played well
+       12  SAFE         NONE  | I'm going to the gym after school
+        4  SAFE         NONE  | you're welcome!
+        4  SAFE         NONE  | you did really well in the exam
+        6  SAFE         NONE  | let's play cricket this weekend
+        7  SAFE         NONE  | I'll bring the projector to class tomorrow
+       10  SAFE         NONE  | don't forget to submit the lab record
+        5  SAFE         NONE  | the hostel food is terrible today
+        9  SAFE         NONE  | who won the match yesterday?
+       14  SAFE         NONE  | I can't wait for the holidays
+        9  SAFE         NONE  | my sister is learning to drive
+        6  SAFE         NONE  | our team lost the match but we played well
         5  SAFE         NONE  | she's coming back from Delhi on monday
        17  SAFE         NONE  | good morning everyone
         4  SAFE         NONE  | hey are you free tonight?
        10  SAFE         NONE  | you look nice in that photo
-       10  SAFE         NONE  | people from Kerala make the best food
-       38  SAFE         NONE  | the Christian club is organising a charity run
+        8  SAFE         NONE  | people from Kerala make the best food
+       33  SAFE         NONE  | the Christian club is organising a charity run
        18  SAFE         NONE  | women's cricket team won the trophy
         0  SAFE         NONE  | the professor said the test is postponed
-       10  SAFE         NONE  | i will kill this presentation tomorrow
-       26  SAFE         NONE  | honestly this lab is so boring
+        8  SAFE         NONE  | i will kill this presentation tomorrow
+       24  SAFE         NONE  | honestly this lab is so boring
        13  SAFE         NONE  | bro that movie was insane
         0  SAFE         NONE  | can someone explain recursion to me?
-       70  INSULT       BLUR  | you are an absolute idiot
-       98  INSULT       BLUR  | nobody wants you in this group, freak
-       99  THREAT       BLUR  | go kill yourself
-       97  THREAT       BLUR  | I will smash your face tomorrow
-WRONG  44  SAFE         NONE  | wait outside after class, you're getting beaten
+       68  INSULT       WARN  | you are an absolute idiot
+       97  INSULT       BLUR  | nobody wants you in this group, freak
+       98  THREAT       BLUR  | go kill yourself
+       92  THREAT       BLUR  | I will smash your face tomorrow
+WRONG  33  SAFE         NONE  | wait outside after class, you're getting beaten
        99  THREAT       BLUR  | I'll find you and hurt you
-       99  HATE_SPEECH  BLUR  | all muslims are terrorists
-       98  HATE_SPEECH  BLUR  | women are too stupid to be engineers
-       99  HATE_SPEECH  BLUR  | immigrants are destroying this country, kick them out
-       84  INSULT       BLUR  | you're so ugly no one will ever love you
-       98  INSULT       BLUR  | shut your mouth you clown
-       99  THREAT       BLUR  | we will make you regret coming to college
-       66  THREAT       WARN  | your family is trash
+       98  HATE_SPEECH  BLUR  | all muslims are terrorists
+       96  HATE_SPEECH  BLUR  | women are too stupid to be engineers
+       98  HATE_SPEECH  BLUR  | immigrants are destroying this country, kick them out
+       77  INSULT       BLUR  | you're so ugly no one will ever love you
+       97  INSULT       BLUR  | shut your mouth you clown
+       98  THREAT       BLUR  | we will make you regret coming to college
+       58  THREAT       WARN  | your family is trash
       100  HATE_SPEECH  BLUR  | people like you shouldn't be allowed to live here
-       97  INSULT       BLUR  | you're a disgusting pig
-       23  SAFE         NONE  | the hindu temple festival is next week
-        9  SAFE         NONE  | jewish students organised a food drive
-WRONG  58  THREAT       WARN  | gay pride parade happens in june
+       95  INSULT       BLUR  | you're a disgusting pig
+       22  SAFE         NONE  | the hindu temple festival is next week
+        8  SAFE         NONE  | jewish students organised a food drive
+WRONG  52  THREAT       WARN  | gay pride parade happens in june
         8  SAFE         NONE  | asian food stall in the canteen is great
-       18  SAFE         NONE  | my black classmate topped the exam
-       23  SAFE         NONE  | trans people's rights seminar is on friday
-       29  SAFE         NONE  | I'm so angry at myself for failing
+       17  SAFE         NONE  | my black classmate topped the exam
+       19  SAFE         NONE  | trans people's rights seminar is on friday
+       30  SAFE         NONE  | I'm so angry at myself for failing
         6  SAFE         NONE  | see you at the bus stop after school
-       57  HATE_SPEECH  WARN  | honestly the world would be better without you
+       55  HATE_SPEECH  WARN  | honestly the world would be better without you
        99  INSULT       BLUR  | you're a useless waste of space
-       69  THREAT       WARN  | meet me behind the gym and I'll break your legs
-      100  HATE_SPEECH  BLUR  | gay people are disgusting and should be banned
+       55  THREAT       WARN  | meet me behind the gym and I'll break your legs
+       99  HATE_SPEECH  BLUR  | gay people are disgusting and should be banned
        98  HATE_SPEECH  BLUR  | all refugees are criminals
-false alarms 1 / 39   missed 1 / 20
+        5  SAFE         NONE  | Does anyone have the notes for tomorrow's physics exam?
+        7  SAFE         NONE  | Great job on the science fair everyone!
+       10  SAFE         NONE  | My muslim friends invited us for the Eid dinner, it was lovely
+       10  SAFE         NONE  | this homework is killing me lol
+        3  SAFE         NONE  | thanks for helping me with the homework
+      100  INSULT       BLUR  | you are such a pathetic loser, nobody wants you here
+      100  THREAT       BLUR  | I know where you live, watch your back after school
+       99  HATE_SPEECH  BLUR  | immigrants are parasites and should be kicked out
+      100  INSULT       BLUR  | shut up you dumb idiot, I will find you tomorrow
+       99  INSULT       BLUR  | u r such a l0ser
+       88  INSULT       BLUR  | you are a worthless idiot and everyone hates you
+false alarms 1 / 44   missed 1 / 26
+
+Same sentences with Naive Bayes (speaksafe.model=naive-bayes): 4 false alarms / 44, 0 missed / 26.
+Naive Bayes scores higher on the 80/20 test split but raises more false alarms on new text,
+which is why Linear SVM is the default.

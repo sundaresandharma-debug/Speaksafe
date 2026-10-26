@@ -175,8 +175,10 @@ safe,thanks for the notes
 Most of it is generated from sentence patterns, so the 80/20 test-split accuracy (about 97–99%) is
 **higher than you would get on real social media data**. A fairer check is
 [`docs/demo/unseen_sentence_test.txt`](docs/demo/unseen_sentence_test.txt): 59 hand-written sentences the
-model never saw. **38 of 39 harmless sentences pass and 19 of 20 toxic ones are caught.** The mistakes are
-listed there too. They make good material for the "limitations" part of your report.
+model never saw. With the default Linear SVM, **43 of 44 harmless sentences pass and 25 of 26 toxic ones are
+caught.** Naive Bayes scores higher on the test split but raises 4 false alarms on these sentences, which is
+why SVM is the default. The mistakes are listed in the file. They make good material for the "results" and
+"limitations" parts of your report.
 
 To get more realistic numbers for your final report, add rows from a public dataset in the same
 `label,text` format and re-run `--evaluate`. Good options:

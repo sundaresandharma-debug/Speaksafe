@@ -3,33 +3,33 @@
 Dataset size: 1160 messages (80% train / 20% test)
 
 Model           Accuracy  Precision   Recall  F1-score   ms/message
-Naive Bayes        97.4%      96.8%    96.2%     96.5%        0.086
-Linear SVM         99.1%      98.9%    98.3%     98.6%        0.031
+Naive Bayes        98.7%      98.9%    97.3%     98.1%        0.096
+Linear SVM         95.7%      97.7%    91.5%     94.3%        0.038
 
 --- Naive Bayes: per category ---
 Category      Precision   Recall  F1-score  Support
-SAFE              97.9%    98.6%     98.3%      144
-INSULT           100.0%    96.9%     98.4%       32
-THREAT            92.6%    89.3%     90.9%       28
-HATE_SPEECH       96.6%   100.0%     98.2%       28
-Confusion matrix (rows = actual, columns = predicted):
-                    SAFE      INSULT      THREAT HATE_SPEECH
-SAFE                 142           0           1           1
-INSULT                 0          31           1           0
-THREAT                 3           0          25           0
-HATE_SPEECH            0           0           0          28
-
---- Linear SVM: per category ---
-Category      Precision   Recall  F1-score  Support
-SAFE              99.3%   100.0%     99.7%      144
-INSULT           100.0%    96.9%     98.4%       32
-THREAT            96.4%    96.4%     96.4%       28
-HATE_SPEECH      100.0%   100.0%    100.0%       28
+SAFE              98.6%   100.0%     99.3%      144
+INSULT            97.0%   100.0%     98.5%       32
+THREAT           100.0%    92.9%     96.3%       28
+HATE_SPEECH      100.0%    96.4%     98.2%       28
 Confusion matrix (rows = actual, columns = predicted):
                     SAFE      INSULT      THREAT HATE_SPEECH
 SAFE                 144           0           0           0
-INSULT                 0          31           1           0
-THREAT                 1           0          27           0
-HATE_SPEECH            0           0           0          28
+INSULT                 0          32           0           0
+THREAT                 1           1          26           0
+HATE_SPEECH            1           0           0          27
+
+--- Linear SVM: per category ---
+Category      Precision   Recall  F1-score  Support
+SAFE              94.1%   100.0%     97.0%      144
+INSULT            96.6%    87.5%     91.8%       32
+THREAT           100.0%    82.1%     90.2%       28
+HATE_SPEECH      100.0%    96.4%     98.2%       28
+Confusion matrix (rows = actual, columns = predicted):
+                    SAFE      INSULT      THREAT HATE_SPEECH
+SAFE                 144           0           0           0
+INSULT                 4          28           0           0
+THREAT                 4           1          23           0
+HATE_SPEECH            1           0           0          27
 ============================================================
 

@@ -165,7 +165,7 @@ def gen(templates, n, label):
     tries = 0
     while len(out) < n and tries < 100000:
         out.add(random.choice(templates)()); tries += 1
-    return [(label.lower(), t) for t in out]
+    return [(label.lower(), t) for t in sorted(out)]   # sorted -> same file every run
 
 rows = gen(safe_t,720,"SAFE")+gen(insult_t,160,"INSULT")+gen(threat_t,140,"THREAT")+gen(hate_t,140,"HATE_SPEECH")
 random.shuffle(rows)
