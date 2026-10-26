@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpeakSafe - Moderator Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>🛡️ SpeakSafe</h1>
+  <nav>
+    <a href="index.html">Check a Message</a>
+    <a href="dashboard.html" class="active">Moderator Dashboard</a>
+  </nav>
+</header>
+<main>
+  <section class="card">
+    <h2>Flagged messages by category</h2>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="card">
+    <h2>Flagged &amp; reported messages</h2>
+    <button class="secondary" id="refreshBtn">Refresh</button>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Time</th><th>Message</th><th>Score</th><th>Category</th><th>Source</th><th>By</th><th></th></tr></thead>
+        <tbody id="reports"></tbody>
+      </table>
+    </div>
+    <p class="muted" id="empty" hidden>No flagged messages yet.</p>
+  </section>
+
+  <section class="card">
+    <h2>Model evaluation (Naive Bayes vs SVM)</h2>
+    <p class="muted">80% of the dataset is used for training and 20% for testing.</p>
+    <button class="secondary" id="evalBtn">Run evaluation</button>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1-score</th><th>ms / message</th></tr></thead>
+        <tbody id="evaluation"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+  const COLORS = { SAFE: '#1f9d55', INSULT: '#d97706', THREAT: '#dc2626', HATE_SPEECH: '#7c3aed' };
+  const pct = x => (x * 100).toFixed(1) + '%';
+
+  // Builds a table cell with plain text (never HTML), so stored messages cannot inject code.
+  function cell(text) {
+    const td = document.createElement('td');
+    td.textContent = text;
+    return td;
+  }
+
+  async function loadStats() {
+    const stats = await (await fetch('/api/stats')).json();
+    const box = document.getElementById('stats');
+    box.innerHTML = '';
+    for (const [category, count] of Object.entries(stats)) {
+      if (category === 'SAFE') continue;
+      const div = document.createElement('div');
+      div.className = 'stat';
+      div.style.background = COLORS[category];
+      div.innerHTML = '<b>' + count + '</b>' + category.replace('_', ' ');
+      box.appendChild(div);
+    }
+  }
+
+  async function loadReports() {
+    const reports = await (await fetch('/api/reports')).json();
+    const body = document.getElementById('reports');
+    body.innerHTML = '';
+    document.getElementById('empty').hidden = reports.length > 0;
+    for (const r of reports) {
+      const tr = document.createElement('tr');
+      tr.append(cell(r.createdAt), cell(r.text), cell(r.score));
+      const categoryCell = document.createElement('td');
+      categoryCell.innerHTML = '<span class="badge ' + r.category + '"></span>';
+      categoryCell.firstChild.textContent = r.category.replace('_', ' ');
+      tr.append(categoryCell, cell(r.sourceUrl), cell(r.reportedBy));
+      const actionCell = document.createElement('td');
+      const del = document.createElement('button');
+      del.className = 'danger';
+      del.textContent = 'Dismiss';
+      del.onclick = async () => { await fetch('/api/reports/' + r.id, { method: 'DELETE' }); refresh(); };
+      actionCell.appendChild(del);
+      tr.appendChild(actionCell);
+      body.appendChild(tr);
+    }
+  }
+
+  async function runEvaluation() {
+    const body = document.getElementById('evaluation');
+    body.innerHTML = '<tr><td colspan="6">Running…</td></tr>';
+    const results = await (await fetch('/api/evaluate')).json();
+    body.innerHTML = '';
+    for (const r of results) {
+      const tr = document.createElement('tr');
+      tr.append(cell(r.model), cell(pct(r.accuracy)), cell(pct(r.macroPrecision)),
+                cell(pct(r.macroRecall)), cell(pct(r.macroF1)), cell(r.avgMillisPerMessage.toFixed(3)));
+      body.appendChild(tr);
+    }
+  }
+
+  function refresh() { loadStats(); loadReports(); }
+
+  document.getElementById('refreshBtn').addEventListener('click', refresh);
+  document.getElementById('evalBtn').addEventListener('click', runEvaluation);
+  refresh();
+</script>
+</body>
+</html>

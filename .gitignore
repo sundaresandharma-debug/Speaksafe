@@ -1,0 +1,9 @@
+# Build output
+backend/target/
+# Local database created when the app runs
+*.db
+# IDE files
+.idea/
+.vscode/
+*.iml
+.DS_Store

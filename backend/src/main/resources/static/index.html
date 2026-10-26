@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpeakSafe - Message Checker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>🛡️ SpeakSafe</h1>
+  <nav>
+    <a href="index.html" class="active">Check a Message</a>
+    <a href="dashboard.html">Moderator Dashboard</a>
+  </nav>
+</header>
+<main>
+  <section class="card">
+    <h2>Type or paste a message</h2>
+    <textarea id="message" placeholder="e.g. you are such a loser"></textarea>
+    <div class="examples">
+      <span class="muted">Try:</span>
+      <button type="button">thanks for helping me with the homework</button>
+      <button type="button">nobody likes you, loser</button>
+      <button type="button">I will beat you up after school</button>
+      <button type="button">refugees should go back where they came from</button>
+    </div>
+    <button id="analyzeBtn">Analyze</button>
+    <button id="reportBtn" class="secondary" disabled>Report to moderator</button>
+  </section>
+
+  <section class="card" id="resultCard" hidden>
+    <h2>Result</h2>
+    <div class="score-row">
+      <div class="score" id="score">0</div>
+      <div class="bar"><div id="bar"></div></div>
+      <span class="badge" id="category">SAFE</span>
+    </div>
+    <p id="advice"></p>
+    <table>
+      <thead><tr><th>Category</th><th>Probability</th></tr></thead>
+      <tbody id="probabilities"></tbody>
+    </table>
+    <p class="muted" id="model"></p>
+  </section>
+</main>
+
+<script>
+  const messageBox = document.getElementById('message');
+  const reportBtn = document.getElementById('reportBtn');
+
+  const ADVICE = {
+    NONE: 'This message looks safe.',
+    WARN: '⚠️ This message may be hurtful. Consider rewording it.',
+    BLUR: '⛔ This message is harmful. The extension would blur it and flag it for moderators.'
+  };
+  const COLORS = { SAFE: '#1f9d55', INSULT: '#d97706', THREAT: '#dc2626', HATE_SPEECH: '#7c3aed' };
+
+  async function analyze() {
+    const text = messageBox.value.trim();
+    if (!text) return;
+    const response = await fetch('/api/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: text, sourceUrl: 'web-form', autoFlag: false })
+    });
+    showResult(await response.json());
+    reportBtn.disabled = false;
+  }
+
+  function showResult(result) {
+    document.getElementById('resultCard').hidden = false;
+    document.getElementById('score').textContent = result.score;
+    const bar = document.getElementById('bar');
+    bar.style.width = result.score + '%';
+    bar.style.background = COLORS[result.category];
+    const badge = document.getElementById('category');
+    badge.textContent = result.category.replace('_', ' ');
+    badge.className = 'badge ' + result.category;
+    document.getElementById('advice').textContent = ADVICE[result.action];
+    document.getElementById('model').textContent = 'Model: ' + result.model;
+
+    const rows = document.getElementById('probabilities');
+    rows.innerHTML = '';
+    for (const [category, p] of Object.entries(result.probabilities)) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td></td><td>' + (p * 100).toFixed(1) + '%</td>';
+      tr.firstChild.textContent = category.replace('_', ' ');
+      rows.appendChild(tr);
+    }
+  }
+
+  async function report() {
+    await fetch('/api/report', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: messageBox.value.trim(), sourceUrl: 'web-form' })
+    });
+    reportBtn.disabled = true;
+    reportBtn.textContent = 'Reported ✓';
+    setTimeout(() => { reportBtn.textContent = 'Report to moderator'; }, 2000);
+  }
+
+  document.getElementById('analyzeBtn').addEventListener('click', analyze);
+  reportBtn.addEventListener('click', report);
+  messageBox.addEventListener('input', () => { reportBtn.disabled = true; });
+  document.querySelectorAll('.examples button').forEach(button =>
+    button.addEventListener('click', () => { messageBox.value = button.textContent; analyze(); }));
+</script>
+</body>
+</html>

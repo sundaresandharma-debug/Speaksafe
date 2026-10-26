@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/icon48.png" alt="">
+    <div>
+      <h1>SpeakSafe</h1>
+      <div id="status" class="status">Checking server…</div>
+    </div>
+  </header>
+
+  <section>
+    <label class="toggle"><input type="checkbox" id="enabled"> Protection on</label>
+    <label class="toggle"><input type="checkbox" id="warnTyping"> Warn me while I type</label>
+    <label class="toggle"><input type="checkbox" id="scanPage"> Blur toxic messages on pages</label>
+    <label class="toggle"><input type="checkbox" id="autoFlag"> Auto-flag blurred messages to moderators</label>
+  </section>
+
+  <section class="counters">
+    <div><b id="checked">0</b>checked</div>
+    <div><b id="blurred">0</b>blurred</div>
+    <div><b id="warned">0</b>warnings</div>
+    <div><b id="reported">0</b>reported</div>
+  </section>
+
+  <section>
+    <textarea id="testText" placeholder="Test a message here…"></textarea>
+    <button id="testBtn">Check</button>
+    <div id="testResult" class="result"></div>
+  </section>
+
+  <footer>
+    <a href="http://localhost:8080/dashboard.html" target="_blank">Open moderator dashboard →</a>
+  </footer>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+body { width: 300px; margin: 0; font: 13px "Segoe UI", system-ui, sans-serif; color: #1f2333; background: #fff; }
+header { display: flex; gap: 10px; align-items: center; padding: 12px 14px; background: #3b3f9e; color: #fff; }
+header img { width: 36px; height: 36px; }
+h1 { font-size: 16px; margin: 0; }
+.status { font-size: 12px; opacity: .9; }
+.status.online::before { content: "● "; color: #4ade80; }
+.status.offline::before { content: "● "; color: #f87171; }
+section { padding: 10px 14px; border-bottom: 1px solid #eceef5; }
+.toggle { display: flex; gap: 8px; align-items: center; padding: 4px 0; cursor: pointer; }
+.counters { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; color: #6b7086; font-size: 11px; }
+.counters b { display: block; font-size: 18px; color: #1f2333; }
+textarea { width: 100%; box-sizing: border-box; height: 54px; padding: 6px; border: 1px solid #e2e4ee; border-radius: 6px; font: inherit; resize: none; }
+button { margin-top: 6px; padding: 6px 14px; border: 0; border-radius: 6px; background: #3b3f9e; color: #fff; font-weight: 600; cursor: pointer; }
+.result { margin-top: 8px; font-weight: 600; }
+.SAFE { color: #1f9d55; } .INSULT { color: #d97706; } .THREAT { color: #dc2626; } .HATE_SPEECH { color: #7c3aed; }
+footer { padding: 10px 14px; }
+footer a { color: #3b3f9e; font-weight: 600; text-decoration: none; }

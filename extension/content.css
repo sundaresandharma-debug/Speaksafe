@@ -1,0 +1,48 @@
+/* Toxic message hidden behind a blur */
+.speaksafe-blurred {
+  filter: blur(6px) !important;
+  user-select: none !important;
+  transition: filter .2s;
+}
+/* Message that may be hurtful (warning only) */
+.speaksafe-warned {
+  text-decoration: underline wavy #d97706 !important;
+  text-decoration-skip-ink: none !important;
+}
+/* Small label shown above a blurred message */
+.speaksafe-label {
+  all: initial;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #fde8e8;
+  color: #991b1b;
+  font: 600 12px/1.4 "Segoe UI", system-ui, sans-serif;
+}
+.speaksafe-label button {
+  all: initial;
+  cursor: pointer;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #fff;
+  color: #991b1b;
+  border: 1px solid #f5b5b5;
+  font: 600 11px/1.4 "Segoe UI", system-ui, sans-serif;
+}
+/* Warning bubble shown under a text box while typing */
+.speaksafe-bubble {
+  all: initial;
+  position: absolute;
+  z-index: 2147483647;
+  max-width: 340px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+  font: 13px/1.4 "Segoe UI", system-ui, sans-serif;
+  color: #fff;
+}
+.speaksafe-bubble.warn { background: #d97706; }
+.speaksafe-bubble.block { background: #dc2626; }
