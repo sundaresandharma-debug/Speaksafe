@@ -82,7 +82,7 @@ mvnw.cmd spring-boot:run        (Windows)
 ```
 
 The first run downloads the libraries, which takes a few minutes. When you see
-`SpeakSafe: trained Linear SVM on 1420 messages` and `Started SpeakSafeApplication`, it is ready.
+`SpeakSafe: trained Linear SVM on 1520 messages` and `Started SpeakSafeApplication`, it is ready.
 
 Open <http://localhost:8080> to try the message checker and
 <http://localhost:8080/dashboard.html> for the moderator dashboard.
@@ -185,8 +185,8 @@ Example response from `/api/analyze`:
 
 ## About the dataset
 
-`backend/src/main/resources/dataset/speaksafe_dataset.csv` has **1420 labelled messages**
-(980 safe, 160 insult, 140 threat, 140 hate speech). It is built by `docs/make_dataset.py` from sentence
+`backend/src/main/resources/dataset/speaksafe_dataset.csv` has **1520 labelled messages**
+(980 safe, 260 insult, 140 threat, 140 hate speech). It is built by `docs/make_dataset.py` from sentence
 patterns plus about 250 hand-written everyday, news and anti-bullying sentences in
 `docs/dataset_extra_safe.txt`. The format is simple:
 
@@ -199,10 +199,13 @@ safe,thanks for the notes
 Most of it is generated from sentence patterns, so the 80/20 test-split accuracy (about 97–99%) is
 **higher than you would get on real social media data**. A fairer check is
 [`docs/demo/unseen_sentence_test.txt`](docs/demo/unseen_sentence_test.txt): 59 hand-written sentences the
-model never saw: chat messages, article-style paragraphs and a news article about cyberbullying.
-With the default Linear SVM, **73 of 74 harmless texts pass and 29 of 31 toxic ones are caught.** The one false
-alarm is an article paragraph that *quotes* a threat. Naive Bayes raises 3 false alarms on the same text,
-which is why SVM is the default. The mistakes are listed in the file. They make good material for the "results" and
+model never saw: chat messages, article-style paragraphs, a news article about cyberbullying, and profanity
+including masked spellings like `f*ck` and `sh*t`. With the default Linear SVM, **76 of 78 harmless texts pass
+and 46 of 47 toxic ones are caught.** Naive Bayes is within one message of it (2 false alarms, 0 missed).
+
+Swear words aimed at someone ("fuck off", "you piece of shit") are labelled as insults; mild exclamations
+("damn this traffic") are labelled safe. Masked spellings are written out in full before the model sees them
+(`f*ck`, `fck`, `f**k` → `fuck`; `sh*t` → `shit`; `a$$hole` → `asshole`). The mistakes are listed in the file. They make good material for the "results" and
 "limitations" parts of your report.
 
 To get more realistic numbers for your final report, add rows from a public dataset in the same

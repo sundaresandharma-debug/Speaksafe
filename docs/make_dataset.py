@@ -29,6 +29,26 @@ insult_t = [
  lambda: f"stop posting, you {random.choice(adj)} {random.choice(noun)}",
  lambda: f"imagine being this {random.choice(adj)}",
 ]
+# directed profanity (swear words aimed at a person) is labelled as an insult
+pnoun = ["bitch","bastard","asshole","dickhead","prick","motherfucker","piece of shit","dumb fuck","jackass","twat","scumbag","shithead"]
+padj = ["fucking","stupid","worthless","pathetic","dumb","ugly","useless"]
+insult_t += [
+ lambda: f"fuck off {random.choice(['','you','loser','idiot','already','and never come back','nobody wants you'])}".strip(),
+ lambda: f"fuck you {random.choice(['','and your','you','loser','bro','seriously','and everyone like you'])}".strip(),
+ lambda: f"you {random.choice(padj)} {random.choice(pnoun)}",
+ lambda: f"you are such a {random.choice(pnoun)}",
+ lambda: f"what a {random.choice(pnoun)}",
+ lambda: f"shut the fuck up {random.choice(['','you','loser','nobody asked'])}".strip(),
+ lambda: f"go fuck yourself {random.choice(['','loser','idiot','you clown'])}".strip(),
+ lambda: f"nobody gives a {random.choice(['shit','fuck','damn'])} about you",
+ lambda: f"get the fuck out {random.choice(['','of here','of this group','loser'])}".strip(),
+ lambda: f"{random.choice(['stfu','gtfo'])} {random.choice(['','you','loser','idiot','bitch'])}".strip(),
+ lambda: f"your {random.choice(['opinion','face','music','work','post'])} is {random.choice(['shit','fucking trash','bullshit','crap'])}",
+ lambda: f"eat shit {random.choice(['','loser','and die'])}".strip(),
+ lambda: f"what the fuck is wrong with you",
+ lambda: f"you {random.choice(['suck','fucking suck','are full of shit'])}",
+]
+
 threat_t = [
  lambda: f"I will {random.choice(hurt)} you {random.choice(when)}",
  lambda: f"I'm going to {random.choice(hurt)} you {random.choice(when)}",
@@ -123,7 +143,7 @@ safe_t += [
 ]
 
 hand = {
-"INSULT": ["honestly you're the dumbest kid in our class","nobody asked for your opinion, clown","you look like a potato lmao","ur so stupid its embarrassing",
+"INSULT": ["fuck off","fuck you","f*ck off","f**k you","you piece of shit","what an asshole","stfu loser","fck off bitch","sh*t head","you stupid b*tch","a$$hole","f u","fu","honestly you're the dumbest kid in our class","nobody asked for your opinion, clown","you look like a potato lmao","ur so stupid its embarrassing",
  "go back to your cave, nobody wants you here","you're a total waste of oxygen","lol you failed again, what a loser","even your mom thinks you're annoying",
  "delete your account, you're pathetic","you write like a five year old idiot","why are you so ugly bro","your voice is so annoying, just stop talking",
  "you are an embarrassment to everyone","such a fake friend, two faced liar","you're worthless and everyone knows it","no wonder you have no friends, freak"],
@@ -150,6 +170,7 @@ hand = {
  "my laptop crashed again","that was a close match","the sunset from the terrace was beautiful","the new syllabus looks tough",
  "who is taking attendance today","we should start a coding club","I'll be a little late, start without me","missed the bus again",
  "happy diwali everyone","eid mubarak to all","merry christmas friends","happy pongal!","hope your exam went well",
+ "damn, this traffic is terrible","what the heck happened in class","oh crap I forgot my id card","hell yeah we won the match","damn that was a good movie","this exam is so hard, damn","crap, the bus left already","what the hell, the wifi is down again",
  "you too","thank you","and you?","miss you guys","you there?","love you all","you first","after you","you as well","bless you","you okay?","same to you",
  "can we reschedule the meeting","just reached home","let's revise together tonight","the results are out!","hey, how are you?",],
 }
@@ -171,7 +192,7 @@ def gen(templates, n, label):
         out.add(random.choice(templates)()); tries += 1
     return [(label.lower(), t) for t in sorted(out)]   # sorted -> same file every run
 
-rows = gen(safe_t,980,"SAFE")+gen(insult_t,160,"INSULT")+gen(threat_t,140,"THREAT")+gen(hate_t,140,"HATE_SPEECH")
+rows = gen(safe_t,980,"SAFE")+gen(insult_t,260,"INSULT")+gen(threat_t,140,"THREAT")+gen(hate_t,140,"HATE_SPEECH")
 random.shuffle(rows)
 w = csv.writer(open(sys.argv[1],"w",newline=""), quoting=csv.QUOTE_MINIMAL, lineterminator="\n")
 w.writerow(["label","text"])

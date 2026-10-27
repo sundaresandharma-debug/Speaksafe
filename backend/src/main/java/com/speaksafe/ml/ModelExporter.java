@@ -38,6 +38,7 @@ public class ModelExporter {
         model.put("blurThreshold", blurThreshold);
         model.put("categories", Category.values());
         model.put("stopwords", new TreeSet<>(TextPreprocessor.stopwords()));
+        model.put("slang", new java.util.TreeMap<>(TextPreprocessor.slang()));
         model.put("terms", terms);
         model.put("idf", round(pipeline.vectorizer().idf()));
         List<double[]> weights = new ArrayList<>();

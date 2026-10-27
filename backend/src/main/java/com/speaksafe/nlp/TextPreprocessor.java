@@ -5,6 +5,7 @@ import opennlp.tools.tokenize.SimpleTokenizer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -25,8 +26,25 @@ public class TextPreprocessor {
             "then", "than", "there", "here", "what", "which", "who", "when", "where",
             "how", "too", "also", "such", "some", "any", "into", "up", "out", "over");
 
+    // Common disguised or shortened spellings of swear words, written out in full
+    // so the model recognises them (e.g. "f*ck" -> "fck" -> "fuck").
+    private static final Map<String, String> SLANG = Map.ofEntries(
+            Map.entry("fck", "fuck"), Map.entry("fk", "fuck"), Map.entry("fuk", "fuck"),
+            Map.entry("fuq", "fuck"), Map.entry("fuc", "fuck"), Map.entry("fcuk", "fuck"),
+            Map.entry("phuck", "fuck"), Map.entry("fking", "fucking"), Map.entry("fcking", "fucking"),
+            Map.entry("fuking", "fucking"), Map.entry("fkin", "fucking"), Map.entry("fckin", "fucking"),
+            Map.entry("fkn", "fucking"), Map.entry("fcker", "fucker"), Map.entry("fker", "fucker"),
+            Map.entry("sht", "shit"), Map.entry("shyt", "shit"), Map.entry("btch", "bitch"),
+            Map.entry("biatch", "bitch"), Map.entry("bich", "bitch"), Map.entry("ahole", "asshole"),
+            Map.entry("azzhole", "asshole"), Map.entry("mofo", "motherfucker"), Map.entry("bstrd", "bastard"),
+            Map.entry("dck", "dick"), Map.entry("idiotic", "idiot"));
+
     public static Set<String> stopwords() {
         return STOPWORDS;
+    }
+
+    public static Map<String, String> slang() {
+        return SLANG;
     }
 
     private final SimpleTokenizer tokenizer = SimpleTokenizer.INSTANCE;
@@ -46,6 +64,7 @@ public class TextPreprocessor {
 
         List<String> tokens = new ArrayList<>();
         for (String token : tokenizer.tokenize(clean)) {
+            token = SLANG.getOrDefault(token, token);              // f*ck / fck -> fuck
             if (token.length() > 1 && !STOPWORDS.contains(token)) {
                 tokens.add(stemmer.stem(token));
             }
@@ -74,7 +93,8 @@ public class TextPreprocessor {
             if (word.matches(".*[a-z].*")) {
                 word = word.replace('0', 'o').replace('1', 'i').replace('3', 'e')
                            .replace('4', 'a').replace('5', 's').replace('7', 't')
-                           .replace('@', 'a').replace('$', 's');
+                           .replace('@', 'a').replace('$', 's')
+                           .replace("*", "");                               // f*ck -> fck
             }
             result.append(word).append(' ');
         }

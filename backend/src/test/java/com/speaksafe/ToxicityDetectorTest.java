@@ -42,6 +42,20 @@ class ToxicityDetectorTest {
     }
 
     @Test
+    void profanityAimedAtSomeoneIsFlagged() {
+        String[] messages = {"fuck off", "fuck you", "f*ck off", "f**k you", "you piece of shit", "what an asshole"};
+        for (String message : messages) {
+            assertEquals(Category.INSULT, detector.analyze(message).category(), message);
+            assertEquals(Action.BLUR, detector.analyze(message).action(), message);
+        }
+    }
+
+    @Test
+    void mildExclamationsAreNotFlagged() {
+        assertEquals(Action.NONE, detector.analyze("damn this assignment is long").action());
+    }
+
+    @Test
     void unknownWordsAreSafe() {
         assertEquals(0, detector.analyze("😊👍").score());
     }

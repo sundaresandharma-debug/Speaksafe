@@ -25,6 +25,13 @@ class TextPreprocessorTest {
     }
 
     @Test
+    void undoesMaskedSwearWords() {
+        assertEquals(List.of("fuck", "off"), preprocessor.process("f*ck off"));
+        assertEquals(List.of("fuck", "you"), preprocessor.process("f**k you"));
+        assertEquals(List.of("shit"), preprocessor.process("sh*t"));
+    }
+
+    @Test
     void stemsWords() {
         assertEquals(List.of("you", "idiot"), preprocessor.process("you idiots"));
     }

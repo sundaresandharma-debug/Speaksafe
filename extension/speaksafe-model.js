@@ -166,14 +166,16 @@
       if (/[a-z]/.test(word)) {
         word = word.replace(/0/g, 'o').replace(/1/g, 'i').replace(/3/g, 'e')
                    .replace(/4/g, 'a').replace(/5/g, 's').replace(/7/g, 't')
-                   .replace(/@/g, 'a').replace(/\$/g, 's');
+                   .replace(/@/g, 'a').replace(/\$/g, 's')
+                   .replace(/\*/g, '');                                       // f*ck -> fck
       }
       result += word + ' ';
     }
     return result;
   }
 
-  function preprocess(text, stopwords) {
+  function preprocess(text, stopwords, slang) {
+    slang = slang || {};
     if (text == null) return [];
     let clean = String(text).toLowerCase();
     clean = clean.replace(/https?:\/\/[^ \t\n\x0B\f\r]+|www\.[^ \t\n\x0B\f\r]+/g, ' ');   // remove links
@@ -183,7 +185,8 @@
     clean = clean.replace(/([^\n\r\u0085\u2028\u2029])\1{2,}/gu, '$1');                 // stuuupid -> stupid
     clean = clean.replace(/[^a-z \t\n\x0B\f\r]/g, ' ');                                 // remove symbols and digits
     const tokens = [];
-    for (const token of clean.split(new RegExp(JAVA_SPACE + '+'))) {
+    for (let token of clean.split(new RegExp(JAVA_SPACE + '+'))) {
+      if (Object.prototype.hasOwnProperty.call(slang, token)) token = slang[token];   // f*ck / fck -> fuck
       if (token.length > 1 && !stopwords.has(token)) tokens.push(porterStem(token));
     }
     return tokens;
@@ -198,6 +201,7 @@
       this.name = json.name;
       this.categories = json.categories;               // [SAFE, INSULT, THREAT, HATE_SPEECH]
       this.stopwords = new Set(json.stopwords);
+      this.slang = json.slang || {};
       this.vocabulary = new Map(json.terms.map((term, i) => [term, i]));
       this.idf = json.idf;
       this.weights = json.weights;
@@ -245,7 +249,7 @@
 
     analyze(text) {
       text = String(text == null ? '' : text).slice(0, 5000);
-      const probabilities = this.probabilities(this.vectorize(preprocess(text, this.stopwords)));
+      const probabilities = this.probabilities(this.vectorize(preprocess(text, this.stopwords, this.slang)));
       const score = Math.round((1 - probabilities.SAFE) * 100);
       let category = 'SAFE';
       if (score >= this.warnThreshold) {
