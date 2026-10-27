@@ -24,9 +24,20 @@ async function loadCounters() {
 
 async function checkServer() {
   const status = document.getElementById('status');
+  const link = document.getElementById('dashboardLink');
   const health = await ask({ type: 'health' });
-  status.textContent = health ? 'Server online' : 'Server offline – start the Java backend';
-  status.className = 'status ' + (health ? 'online' : 'offline');
+  if (health && health.mode === 'server') {
+    status.textContent = 'Connected to Java server';
+    status.className = 'status online';
+    link.href = 'http://localhost:8080/dashboard.html';
+    link.textContent = 'Open moderator dashboard →';
+  } else {
+    // No server needed: the built-in model runs inside the browser.
+    status.textContent = 'Built-in model active (no server needed)';
+    status.className = 'status builtin';
+    link.href = chrome.runtime.getURL('reports.html');
+    link.textContent = 'Open flagged messages →';
+  }
 }
 
 async function testMessage() {

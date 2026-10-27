@@ -25,6 +25,10 @@ public class TextPreprocessor {
             "then", "than", "there", "here", "what", "which", "who", "when", "where",
             "how", "too", "also", "such", "some", "any", "into", "up", "out", "over");
 
+    public static Set<String> stopwords() {
+        return STOPWORDS;
+    }
+
     private final SimpleTokenizer tokenizer = SimpleTokenizer.INSTANCE;
     private final PorterStemmer stemmer = new PorterStemmer();
 

@@ -60,6 +60,14 @@ public class DetectionPipeline {
         return best;
     }
 
+    public TfIdfVectorizer vectorizer() {
+        return vectorizer;
+    }
+
+    public Classifier classifier() {
+        return classifier;
+    }
+
     public String modelName() {
         return classifier.name();
     }

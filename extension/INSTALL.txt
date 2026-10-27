@@ -1,0 +1,21 @@
+SpeakSafe - Cyberbullying and Hate Speech Detector (Chrome extension)
+=====================================================================
+
+INSTALL (2 minutes)
+1. Unzip this file. You get a folder called "SpeakSafe-Extension".
+2. Open Chrome (Edge and Brave work too) and go to:  chrome://extensions
+3. Turn ON "Developer mode" (switch in the top-right corner).
+4. Click "Load unpacked" and select the "SpeakSafe-Extension" folder.
+5. Click the puzzle-piece icon in the toolbar and pin "SpeakSafe".
+
+USE
+- Open any page with comments or chats: toxic messages are blurred.
+  Click "Show" to read one, or "Report" to flag it.
+- Type a rude message in any text box: a warning appears before you send it.
+- Click the SpeakSafe icon for switches, counters, a quick test box and the list of flagged messages.
+
+No server is needed: the built-in model runs inside the browser.
+If the SpeakSafe Java backend is running on http://localhost:8080, the extension uses it automatically
+and flagged messages appear on its moderator dashboard.
+
+Keep the folder: Chrome loads the extension from it, so don't delete or move it after installing.

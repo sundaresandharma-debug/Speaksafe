@@ -1,0 +1,23 @@
+:root { --brand: #3b3f9e; --border: #e2e4ee; --muted: #6b7086; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px "Segoe UI", system-ui, sans-serif; color: #1f2333; background: #f5f6fa; }
+header { display: flex; gap: 14px; align-items: center; padding: 16px 24px; background: var(--brand); color: #fff; }
+header h1 { margin: 0; font-size: 20px; }
+header p { margin: 4px 0 0; opacity: .85; font-size: 13px; }
+main { max-width: 1000px; margin: 20px auto; padding: 0 16px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.stat { padding: 14px; border-radius: 10px; color: #fff; }
+.stat b { display: block; font-size: 26px; }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; }
+.toolbar { display: flex; justify-content: space-between; align-items: center; }
+h2 { font-size: 17px; margin: 0; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+td.url { max-width: 220px; overflow-wrap: anywhere; color: var(--muted); font-size: 12px; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; color: #fff; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.INSULT { background: #d97706; } .THREAT { background: #dc2626; } .HATE_SPEECH { background: #7c3aed; } .SAFE { background: #1f9d55; }
+button { border: 1px solid var(--brand); background: #fff; color: var(--brand); border-radius: 6px; padding: 5px 12px; font-weight: 600; cursor: pointer; }
+button.danger { border-color: #dc2626; color: #dc2626; }
+.muted { color: var(--muted); }

@@ -62,6 +62,16 @@ public class TfIdfVectorizer {
         return vocabulary.size();
     }
 
+    /** Word (or word pair) -> feature index. Used when exporting the model. */
+    public Map<String, Integer> vocabulary() {
+        return vocabulary;
+    }
+
+    /** IDF weight of every feature. Used when exporting the model. */
+    public double[] idf() {
+        return idf;
+    }
+
     /** Single words plus pairs of neighbouring words. */
     private List<String> terms(List<String> words) {
         List<String> terms = new ArrayList<>(words);

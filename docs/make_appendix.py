@@ -22,13 +22,15 @@ MODULES = [
     ("Classification Module", [JAVA + "ml/Classifier.java", JAVA + "ml/NaiveBayesClassifier.java",
                                JAVA + "ml/SvmClassifier.java"]),
     ("Training and Evaluation", [JAVA + "ml/DatasetLoader.java", JAVA + "ml/DetectionPipeline.java",
-                                 JAVA + "ml/ModelEvaluator.java"]),
+                                 JAVA + "ml/ModelEvaluator.java", JAVA + "ml/ModelExporter.java"]),
     ("Categorization, Scoring and Action Module", [JAVA + "service/ToxicityDetector.java"]),
     ("Database Module", [RES + "schema.sql", JAVA + "service/ReportRepository.java"]),
     ("Input Module (REST API)", [JAVA + "controller/DetectionController.java"]),
     ("Main Application", [JAVA + "SpeakSafeApplication.java", RES + "application.properties"]),
     ("Browser Extension", ["extension/manifest.json", "extension/background.js", "extension/content.js",
-                           "extension/content.css", "extension/popup.html", "extension/popup.js"]),
+                           "extension/content.css", "extension/popup.html", "extension/popup.js",
+                           "extension/reports.html", "extension/reports.js"]),
+    ("Built-in Browser Model (JavaScript port of the detection engine)", ["extension/speaksafe-model.js"]),
     ("Web Interface (Message Checker and Moderator Dashboard)", [RES + "static/index.html",
                                                                   RES + "static/dashboard.html"]),
 ]
@@ -53,7 +55,8 @@ TREE = """SpeakSafe
 │       │   │   ├── SvmClassifier.java
 │       │   │   ├── DatasetLoader.java
 │       │   │   ├── DetectionPipeline.java
-│       │   │   └── ModelEvaluator.java
+│       │   │   ├── ModelEvaluator.java
+│       │   │   └── ModelExporter.java
 │       │   ├── service
 │       │   │   ├── ToxicityDetector.java
 │       │   │   └── ReportRepository.java
@@ -67,16 +70,22 @@ TREE = """SpeakSafe
 └── extension
     ├── manifest.json
     ├── background.js
+    ├── speaksafe-model.js
+    ├── model.json
     ├── content.js
     ├── content.css
     ├── popup.html
     ├── popup.js
     ├── popup.css
+    ├── reports.html
+    ├── reports.js
+    ├── reports.css
     └── icons"""
 
 SCREENSHOTS = [
     ("forum.png", "Browser extension blurring toxic messages in a group chat and warning while typing"),
-    ("popup.png", "Extension popup with settings, counters and quick test"),
+    ("popup.png", "Extension popup running the built-in model, with settings, counters and quick test"),
+    ("reports.png", "Flagged messages page of the extension (used when no server is running)"),
     ("checker.png", "Web message checker showing toxicity score and category"),
     ("dashboard.png", "Moderator dashboard with flagged messages and model evaluation"),
 ]

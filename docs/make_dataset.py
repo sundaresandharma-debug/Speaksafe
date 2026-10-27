@@ -154,6 +154,10 @@ hand = {
  "can we reschedule the meeting","just reached home","let's revise together tonight","the results are out!","hey, how are you?",],
 }
 
+import os
+EXTRA_SAFE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dataset_extra_safe.txt")
+hand["SAFE"] += [l.strip() for l in open(EXTRA_SAFE, encoding="utf-8") if l.strip() and not l.startswith("#")]
+
 def gen(templates, n, label):
     out = set(t for t in hand[label])
     if label == "SAFE":
@@ -167,7 +171,7 @@ def gen(templates, n, label):
         out.add(random.choice(templates)()); tries += 1
     return [(label.lower(), t) for t in sorted(out)]   # sorted -> same file every run
 
-rows = gen(safe_t,720,"SAFE")+gen(insult_t,160,"INSULT")+gen(threat_t,140,"THREAT")+gen(hate_t,140,"HATE_SPEECH")
+rows = gen(safe_t,980,"SAFE")+gen(insult_t,160,"INSULT")+gen(threat_t,140,"THREAT")+gen(hate_t,140,"HATE_SPEECH")
 random.shuffle(rows)
 w = csv.writer(open(sys.argv[1],"w",newline=""), quoting=csv.QUOTE_MINIMAL, lineterminator="\n")
 w.writerow(["label","text"])

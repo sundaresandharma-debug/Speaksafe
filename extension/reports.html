@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpeakSafe – Flagged messages</title>
+  <link rel="stylesheet" href="reports.css">
+</head>
+<body>
+<header>
+  <img src="icons/icon48.png" alt="">
+  <div>
+    <h1>SpeakSafe – Flagged messages</h1>
+    <p>Messages blurred automatically (AUTO) or reported by you (USER), stored in this browser.
+       When the Java server is running, they go to its moderator dashboard instead.</p>
+  </div>
+</header>
+<main>
+  <section class="stats" id="stats"></section>
+  <section class="card">
+    <div class="toolbar">
+      <h2>Messages</h2>
+      <button id="clearBtn" class="danger">Clear all</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Time</th><th>Message</th><th>Score</th><th>Category</th><th>Page</th><th>By</th><th></th></tr></thead>
+        <tbody id="reports"></tbody>
+      </table>
+    </div>
+    <p class="muted" id="empty" hidden>No flagged messages yet. Visit a page with comments or chats and SpeakSafe will list toxic ones here.</p>
+  </section>
+</main>
+<script src="reports.js"></script>
+</body>
+</html>

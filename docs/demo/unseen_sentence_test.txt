@@ -1,80 +1,118 @@
-SpeakSafe - test on sentences the model never saw during training (default model: Linear SVM)
+SpeakSafe - test on text the model never saw during training (default model: Linear SVM)
 Columns: WRONG marker, toxicity score (0-100), category, action, message
 Action NONE = shown normally, WARN = warning, BLUR = hidden and flagged
-The last 11 sentences are the ones used in the demo video.
+
+Sections, in order:
+  1. short chat messages (incl. the 11 used in the demo video)
+  2. new article-style paragraphs and comments
+  3. paragraphs of a news article about cyberbullying
 
        10  SAFE         NONE  | sorry, I was upset. Can we talk after class?
-       19  SAFE         NONE  | I'll upload them to the drive tonight 👍
-        7  SAFE         NONE  | You
+       13  SAFE         NONE  | I'll upload them to the drive tonight 👍
+        9  SAFE         NONE  | You
         0  SAFE         NONE  | Karthik
         4  SAFE         NONE  | I'll call you tomorrow
         4  SAFE         NONE  | I'll see you after school
         2  SAFE         NONE  | we'll meet at the library tonight
-        4  SAFE         NONE  | can you send the assignment tonight?
-       12  SAFE         NONE  | I'm going to the gym after school
+        5  SAFE         NONE  | can you send the assignment tonight?
+       16  SAFE         NONE  | I'm going to the gym after school
         4  SAFE         NONE  | you're welcome!
-        4  SAFE         NONE  | you did really well in the exam
-        6  SAFE         NONE  | let's play cricket this weekend
+        5  SAFE         NONE  | you did really well in the exam
+        7  SAFE         NONE  | let's play cricket this weekend
         7  SAFE         NONE  | I'll bring the projector to class tomorrow
-       10  SAFE         NONE  | don't forget to submit the lab record
-        5  SAFE         NONE  | the hostel food is terrible today
-        9  SAFE         NONE  | who won the match yesterday?
-       14  SAFE         NONE  | I can't wait for the holidays
+        9  SAFE         NONE  | don't forget to submit the lab record
+        6  SAFE         NONE  | the hostel food is terrible today
+        7  SAFE         NONE  | who won the match yesterday?
+       10  SAFE         NONE  | I can't wait for the holidays
         9  SAFE         NONE  | my sister is learning to drive
         6  SAFE         NONE  | our team lost the match but we played well
-        5  SAFE         NONE  | she's coming back from Delhi on monday
-       17  SAFE         NONE  | good morning everyone
-        4  SAFE         NONE  | hey are you free tonight?
-       10  SAFE         NONE  | you look nice in that photo
+        6  SAFE         NONE  | she's coming back from Delhi on monday
+       14  SAFE         NONE  | good morning everyone
+        3  SAFE         NONE  | hey are you free tonight?
+        9  SAFE         NONE  | you look nice in that photo
         8  SAFE         NONE  | people from Kerala make the best food
-       33  SAFE         NONE  | the Christian club is organising a charity run
-       18  SAFE         NONE  | women's cricket team won the trophy
-        0  SAFE         NONE  | the professor said the test is postponed
-        8  SAFE         NONE  | i will kill this presentation tomorrow
-       24  SAFE         NONE  | honestly this lab is so boring
-       13  SAFE         NONE  | bro that movie was insane
-        0  SAFE         NONE  | can someone explain recursion to me?
-       68  INSULT       WARN  | you are an absolute idiot
-       97  INSULT       BLUR  | nobody wants you in this group, freak
-       98  THREAT       BLUR  | go kill yourself
-       92  THREAT       BLUR  | I will smash your face tomorrow
-WRONG  33  SAFE         NONE  | wait outside after class, you're getting beaten
+       20  SAFE         NONE  | the Christian club is organising a charity run
+       11  SAFE         NONE  | women's cricket team won the trophy
+       12  SAFE         NONE  | the professor said the test is postponed
+        9  SAFE         NONE  | i will kill this presentation tomorrow
+       22  SAFE         NONE  | honestly this lab is so boring
+       10  SAFE         NONE  | bro that movie was insane
+       10  SAFE         NONE  | can someone explain recursion to me?
+       97  INSULT       BLUR  | you are an absolute idiot
+       99  INSULT       BLUR  | nobody wants you in this group, freak
+      100  THREAT       BLUR  | go kill yourself
+       98  THREAT       BLUR  | I will smash your face tomorrow
+WRONG  35  SAFE         NONE  | wait outside after class, you're getting beaten
        99  THREAT       BLUR  | I'll find you and hurt you
-       98  HATE_SPEECH  BLUR  | all muslims are terrorists
-       96  HATE_SPEECH  BLUR  | women are too stupid to be engineers
-       98  HATE_SPEECH  BLUR  | immigrants are destroying this country, kick them out
-       77  INSULT       BLUR  | you're so ugly no one will ever love you
-       97  INSULT       BLUR  | shut your mouth you clown
-       98  THREAT       BLUR  | we will make you regret coming to college
-       58  THREAT       WARN  | your family is trash
+       96  HATE_SPEECH  BLUR  | all muslims are terrorists
+       82  HATE_SPEECH  BLUR  | women are too stupid to be engineers
+       99  HATE_SPEECH  BLUR  | immigrants are destroying this country, kick them out
+       88  INSULT       BLUR  | you're so ugly no one will ever love you
+       98  INSULT       BLUR  | shut your mouth you clown
+       94  THREAT       BLUR  | we will make you regret coming to college
+WRONG  43  SAFE         NONE  | your family is trash
       100  HATE_SPEECH  BLUR  | people like you shouldn't be allowed to live here
-       95  INSULT       BLUR  | you're a disgusting pig
-       22  SAFE         NONE  | the hindu temple festival is next week
-        8  SAFE         NONE  | jewish students organised a food drive
-WRONG  52  THREAT       WARN  | gay pride parade happens in june
-        8  SAFE         NONE  | asian food stall in the canteen is great
-       17  SAFE         NONE  | my black classmate topped the exam
+       75  INSULT       BLUR  | you're a disgusting pig
+       10  SAFE         NONE  | the hindu temple festival is next week
+        7  SAFE         NONE  | jewish students organised a food drive
+       34  SAFE         NONE  | gay pride parade happens in june
+       11  SAFE         NONE  | asian food stall in the canteen is great
+       12  SAFE         NONE  | my black classmate topped the exam
        19  SAFE         NONE  | trans people's rights seminar is on friday
-       30  SAFE         NONE  | I'm so angry at myself for failing
-        6  SAFE         NONE  | see you at the bus stop after school
-       55  HATE_SPEECH  WARN  | honestly the world would be better without you
+       27  SAFE         NONE  | I'm so angry at myself for failing
+        4  SAFE         NONE  | see you at the bus stop after school
+       81  HATE_SPEECH  BLUR  | honestly the world would be better without you
        99  INSULT       BLUR  | you're a useless waste of space
-       55  THREAT       WARN  | meet me behind the gym and I'll break your legs
+       67  THREAT       WARN  | meet me behind the gym and I'll break your legs
        99  HATE_SPEECH  BLUR  | gay people are disgusting and should be banned
-       98  HATE_SPEECH  BLUR  | all refugees are criminals
+       95  HATE_SPEECH  BLUR  | all refugees are criminals
         5  SAFE         NONE  | Does anyone have the notes for tomorrow's physics exam?
-        7  SAFE         NONE  | Great job on the science fair everyone!
+        8  SAFE         NONE  | Great job on the science fair everyone!
        10  SAFE         NONE  | My muslim friends invited us for the Eid dinner, it was lovely
-       10  SAFE         NONE  | this homework is killing me lol
+        8  SAFE         NONE  | this homework is killing me lol
         3  SAFE         NONE  | thanks for helping me with the homework
       100  INSULT       BLUR  | you are such a pathetic loser, nobody wants you here
       100  THREAT       BLUR  | I know where you live, watch your back after school
        99  HATE_SPEECH  BLUR  | immigrants are parasites and should be kicked out
       100  INSULT       BLUR  | shut up you dumb idiot, I will find you tomorrow
-       99  INSULT       BLUR  | u r such a l0ser
-       88  INSULT       BLUR  | you are a worthless idiot and everyone hates you
-false alarms 1 / 44   missed 1 / 26
+       83  INSULT       BLUR  | u r such a l0ser
+       99  INSULT       BLUR  | you are a worthless idiot and everyone hates you
+        8  SAFE         NONE  | The Indian women's hockey team qualified for the semi-finals after a thrilling penalty shootout against Germany on Sunday evening.
+        8  SAFE         NONE  | Historians believe the ancient port city traded spices, textiles and precious stones with merchants from Rome and China.
+        9  SAFE         NONE  | A recent report by the education department found that students who sleep at least eight hours perform better in exams.
+        4  SAFE         NONE  | Online abuse is often directed at women journalists, who report receiving threatening messages after publishing stories.
+       48  SAFE         NONE  | The charity provides free legal advice to refugees and migrants who are struggling to find housing and work.
+       40  SAFE         NONE  | Members of the Sikh, Hindu, Muslim and Christian communities gathered at the town hall to plan the harvest festival.
+        9  SAFE         NONE  | If you are being bullied, remember that it is not your fault and that there are people who want to help you.
+       15  SAFE         NONE  | The software update fixes several security issues and improves battery life on older phones.
+       10  SAFE         NONE  | Our society has a responsibility to protect children from exploitation and abuse.
+        6  SAFE         NONE  | The new rules require social networks to act within twenty-four hours when users report hateful content.
+        9  SAFE         NONE  | Scientists warn that rising temperatures could threaten crops and water supplies across South Asia.
+        4  SAFE         NONE  | The local book club meets on the first Saturday of every month to discuss a novel chosen by its members.
+       10  SAFE         NONE  | Volunteers from the youth association cleaned the lake and planted two hundred saplings along its banks.
+       19  SAFE         NONE  | The comedian's new show pokes fun at office life, traffic jams and family WhatsApp groups.
+       11  SAFE         NONE  | Several students said the workshop helped them understand how hurtful comments can affect others.
+       13  SAFE         NONE  | The match was fierce, but both captains shook hands and praised each other's teams afterwards.
+       13  SAFE         NONE  | Disabled people often face barriers in public transport, and the new ramps are a welcome change.
+       13  SAFE         NONE  | The film tells the story of an immigrant family building a new life in a busy city.
+       11  SAFE         NONE  | The debate focused on whether stricter laws can reduce hate crimes without limiting free speech.
+       23  SAFE         NONE  | Please remember to keep your comments polite and relevant to the topic of the article.
+       95  INSULT       BLUR  | you are pathetic and everyone in this thread hates you
+       99  HATE_SPEECH  BLUR  | people of your religion are animals and should be thrown out of this country
+       98  THREAT       BLUR  | delete your account or I will find you and make you pay
+       94  INSULT       BLUR  | what a stupid article, the writer is a brainless clown
+       99  HATE_SPEECH  BLUR  | all refugees are parasites, send them back
+       31  SAFE         NONE  | Cyberbullying is the use of digital technology to harass, threaten or embarrass another person. Surveys suggest that around one in three teenagers has experienced it at least once.
+       14  SAFE         NONE  | Unlike playground bullying, online abuse can follow a student home. Messages calling someone a loser or an idiot can be shared hundreds of times within minutes.
+WRONG  98  THREAT       BLUR  | Experts say threats such as "I know where you live" should always be reported to teachers and, where necessary, to the police.
+       21  SAFE         NONE  | Hate speech targeting religion, ethnicity, gender or sexuality is illegal in many countries, and platforms are required to remove it quickly.
+        8  SAFE         NONE  | The new school policy includes workshops where students learn how to respond, how to block accounts and how to support friends who are being targeted.
+       11  SAFE         NONE  | Parents are encouraged to talk openly with their children and to watch for signs such as anxiety, poor sleep or sudden withdrawal from social media.
+        8  SAFE         NONE  | Researchers at the university are building tools that use natural language processing to detect abusive messages automatically.
+       11  SAFE         NONE  | "Most young people are kind online," said the principal. "But a small number of harmful messages can do real damage, so we want every student to know where to get help."
+       13  SAFE         NONE  | The cricket team, the debate club and the music society have all signed a pledge to keep their group chats respectful.
+        8  SAFE         NONE  | Students who need support can contact the counselling centre on the second floor, open every weekday from 9 am to 5 pm.
+TOTAL: false alarms 1 / 74   missed 2 / 31
 
-Same sentences with Naive Bayes (speaksafe.model=naive-bayes): 4 false alarms / 44, 0 missed / 26.
-Naive Bayes scores higher on the 80/20 test split but raises more false alarms on new text,
-which is why Linear SVM is the default.
+Same text with Naive Bayes (speaksafe.model=naive-bayes): 3 false alarms / 74, 0 missed / 31.
+The browser extension built-in model gives exactly the same results as the Java server.

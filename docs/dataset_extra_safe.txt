@@ -1,0 +1,191 @@
+# Extra SAFE sentences for the SpeakSafe dataset (one per line, lines starting with # are ignored).
+# They teach the model that ordinary formal English, news, and text that DISCUSSES bullying or
+# hate speech (education, reporting, policy) is not itself abusive.
+
+# --- education and awareness about bullying ---
+bullying can have a serious effect on a student's mental health
+schools should have a clear policy for reporting harassment
+if someone threatens you online, tell a teacher or a parent
+online harassment is a growing problem among teenagers
+the workshop taught us how to respond to abusive messages
+victims of cyberbullying often feel isolated and anxious
+it is important to support friends who are being targeted online
+hate speech laws exist in many countries to protect minorities
+social media platforms remove posts that break their community rules
+the counsellor explained the difference between teasing and bullying
+students can report abuse anonymously through the school portal
+we discussed how insults spread quickly on group chats
+the research paper studies threats and harassment on social networks
+moderators review reported content and decide whether to remove it
+the campaign encourages young people to speak up against hate
+teachers received training on recognising signs of bullying
+blocking and reporting are the first steps when someone harasses you
+the survey found that many students have seen offensive comments online
+digital wellbeing means using technology in a healthy and safe way
+natural language processing can help detect abusive language automatically
+the police take threats of violence very seriously
+racism and discrimination have no place in our college
+our project detects cyberbullying and hate speech in text
+the dataset contains labelled examples of toxic and safe messages
+the model assigns each message a toxicity score from zero to one hundred
+parents should talk to their children about online safety
+anti bullying week starts on monday with an assembly
+the principal condemned the hateful posters found on campus
+harassment includes repeated unwanted messages and threats
+the law protects people from discrimination based on religion or gender
+we must respect people of every culture and background
+many victims do not report abuse because they feel ashamed
+the helpline offers free and confidential support
+kindness online starts with thinking before you post
+the article explains how trolls try to provoke angry reactions
+the court case was about threatening messages sent on social media
+there is a difference between free speech and hate speech
+the class debated whether social media companies do enough to stop abuse
+bystanders can help by not sharing hurtful content
+the study compares machine learning models for detecting toxic comments
+our society needs better laws against online abuse
+all students must complete the online safety course
+the community came together to support the family after the attack
+education is the best tool to fight prejudice
+the report recommends more mental health support in schools
+
+# --- news and formal writing ---
+the government announced a new budget for public hospitals
+heavy rain is expected across the state this weekend
+the city council approved plans for a new metro line
+scientists discovered a new species of frog in the western ghats
+the company reported higher profits in the last quarter
+the minister visited the flood affected villages on tuesday
+the election results will be announced next month
+prices of vegetables have increased because of the drought
+the museum opened a new exhibition on ancient history
+the national team won the series by three matches to one
+the festival attracted thousands of visitors from across the country
+the university ranked among the top hundred in asia
+the bridge will be closed for repairs until the end of the month
+the report highlights the importance of clean drinking water
+the new policy aims to reduce plastic waste in cities
+the court adjourned the hearing to next week
+researchers published their findings in a leading journal
+the airline cancelled several flights due to fog
+the library will extend its opening hours during exams
+the hospital launched a free vaccination drive for children
+our society has changed a lot because of the internet
+society depends on cooperation and trust between people
+the history of human society is full of migration
+all members of the society are invited to the annual meeting
+the music society is holding auditions next week
+the drama society performed a play about friendship
+the literary society published its first magazine
+the photography club and the music society organised a joint event
+the cooperative society distributed seeds to farmers
+the housing society meeting is on sunday evening
+their team worked hard and deserved the win
+the students presented their projects to the judges
+they finished their homework before dinner
+the farmers sold their crops at the market
+our neighbours painted their house blue
+the scouts kept their promise to clean the beach
+all the participants received certificates
+all trains are running on time today
+all seats in the auditorium were full
+all the best for your interview tomorrow
+we all enjoyed the trip to the hills
+the whole group agreed to keep the chat friendly
+the club signed an agreement with the local school
+the team signed a new sponsor for the season
+the members took a pledge to plant trees
+everyone pledged to save water this summer
+the committee keeps records of all meetings
+please keep the group chat respectful and on topic
+our culture values hospitality and respect for elders
+the country celebrated its independence day with parades
+people in the village welcomed the volunteers warmly
+the population of the city has grown rapidly
+the report studies the culture of different communities
+immigration has shaped the economy of many countries
+the refugee camp received food and medical supplies
+foreign students make up a quarter of the campus
+the documentary looks at the lives of migrant workers
+religious leaders called for peace and unity
+the mosque, the temple and the church organised a joint food drive
+the government launched schemes for women entrepreneurs
+the conference on disability rights was held in delhi
+the lgbtq support group meets every thursday
+the minority scholarship applications are now open
+
+# --- everyday life and study ---
+please read chapter four before the next lecture
+the assignment must be submitted as a pdf file
+the professor uploaded the slides to the portal
+we need four members for the group project
+the canteen will be closed on saturday
+my roommate is learning to cook
+the internet is very slow in the hostel today
+i forgot my umbrella at the library
+can you lend me your calculator for the exam
+the bus to the city leaves every thirty minutes
+our lab partner explained the experiment really well
+the seminar was about renewable energy
+the placement cell posted new internship openings
+the sports day has been moved to friday
+my phone screen cracked when it fell
+we are planning a trip to the beach after exams
+the coffee machine on the second floor is broken
+my grandmother makes the best payasam
+the new semester timetable is out
+please switch off your phones during the lecture
+the guest lecture on cyber security was very interesting
+she topped the class in data structures
+i need to renew my library card
+the weather is perfect for a walk
+he volunteers at an animal shelter on weekends
+the debate competition is open to all years
+we watched a documentary about the ocean
+the hackathon starts at nine in the morning
+remember to carry your hall ticket
+our project report is due on the fifteenth
+the wifi password has been changed
+she is practising the violin for the concert
+the cricket match was stopped because of rain
+we cleaned the classroom after the event
+my brother is preparing for his board exams
+the train was delayed by two hours
+the food at the wedding was delicious
+our football team trains every evening
+he fixed the bug in the login page
+the teacher praised our presentation
+i am reading a novel about space travel
+the garden looks beautiful after the rain
+we celebrated our friend's birthday in the canteen
+the exam hall is on the ground floor
+the results of the quiz will be posted online
+she shared useful notes for the networking exam
+the new park has a running track
+we are collecting old clothes for donation
+the internship taught me a lot about teamwork
+please update the shared spreadsheet by tonight
+the drawing competition winners will get prizes
+the hostel warden announced new visiting hours
+we stayed up late finishing the model
+my laptop needs a new battery
+the robotics club built a line following robot
+the blood donation camp is on wednesday
+our mentor gave us feedback on the design
+the bus pass can be renewed online
+the sunrise from the hill was amazing
+everyone is invited to the farewell party
+the chemistry practical was easier than expected
+he is very good at explaining maths
+can someone share the recording of the class
+i am so proud of my little sister
+let us meet at the main gate at five
+thank you for organising the event so well
+the stray dogs near the hostel are very friendly
+the speaker shared tips on public speaking
+the college magazine is looking for writers
+we raised money for the children's hospital
+the movie had a very emotional ending
+it was a long day but a good one
+take care and drive safely
+congratulations to all the winners

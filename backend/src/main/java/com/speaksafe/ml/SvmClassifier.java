@@ -91,6 +91,14 @@ public class SvmClassifier implements Classifier {
         return probabilities;
     }
 
+    public double[][] weights() {
+        return weights;
+    }
+
+    public double[] bias() {
+        return bias;
+    }
+
     @Override
     public String name() {
         return "Linear SVM";
