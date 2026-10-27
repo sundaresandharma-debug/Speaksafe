@@ -218,7 +218,14 @@ that naming a group is not hate speech by itself.
 
 ---
 
-## Project report appendix
+## Project report
+
+[`docs/report/SpeakSafe_Project_Report.docx`](docs/report/SpeakSafe_Project_Report.docx) (and a PDF copy) is the full
+project report in the college format: title page, bonafide and viva-voce certificates, abstract,
+acknowledgement, contents, Chapters 1–6, source code appendix and references. The system diagrams
+(architecture, flow, use case, class, sequence) are also in [`docs/report/diagrams`](docs/report/diagrams).
+
+## Project report appendix (standalone)
 
 [`docs/SpeakSafe_Appendix.docx`](docs/SpeakSafe_Appendix.docx) contains the full source code laid out like
 the reference report's appendix (FILE STRUCTURE → MODULE 1 … MODULE 11 → SAMPLE OUTPUT with screenshots).
